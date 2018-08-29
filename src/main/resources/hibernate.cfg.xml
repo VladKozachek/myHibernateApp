@@ -4,12 +4,15 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url">jdbc:mysql://localhost:3306/myhibernatedb</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/muhibernatedb</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="connection.username">root</property>
         <property name="connection.password">root</property>
-        <mapping resource="UsersEntity.hbm.xml"/>
+        <property name="hibernate.hbm2ddl.auto">create</property>
+
         <mapping class="models.User"/>
+        <mapping class="models.Role"/>
+
 
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->

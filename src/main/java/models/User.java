@@ -1,57 +1,55 @@
 package models;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table (name = "users")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column(name = "name")
-    private String name;
-    //можно не указывать Column name, если оно совпадает с названием столбца в таблице
+@Table
+public class User extends Model {
+    @Column (name="age")
     private int age;
 
+    @Column (name = "firstname",length = 50)
+    private String firstName;
+
+    @Column (name = "lasttname",length = 50)
+    private String lastName;
+
+    @ManyToMany
+    @JoinTable(name = "user_role",
+    joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id")})
+    private Set<Role> roles=new HashSet<Role>();
+
     public User() {
+        super();
     }
-
-    public User(String name, int age) {
-        this.name = name;
-        this.age = age;
-
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
+    public User(Long id){
+        super(id);
     }
 
     public int getAge() {
         return age;
     }
 
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public void setAge(int age) {
         this.age = age;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
 
-    @Override
-    public String toString() {
-        return "models.User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                '}';
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }
