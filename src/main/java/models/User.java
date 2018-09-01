@@ -16,11 +16,22 @@ public class User extends Model {
     @Column (name = "lasttname",length = 50)
     private String lastName;
 
+
     @ManyToMany
     @JoinTable(name = "user_role",
     joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<Role> roles=new HashSet<Role>();
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+
 
     public User() {
         super();
@@ -47,6 +58,15 @@ public class User extends Model {
 
     public String getLastName() {
         return lastName;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "age=" + age +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
     }
 
     public void setLastName(String lastName) {
