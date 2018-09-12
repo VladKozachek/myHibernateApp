@@ -31,6 +31,7 @@ public class Product extends Model {
                 "title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +
+                ", productCategory=" + productCategory +
                 '}';
     }
 
